@@ -1,4 +1,6 @@
 import csv
+import numpy as np
+import matplotlib.pyplot as plt
 
 crime_statistics = {}
 crimes_per_year = {'2011' : 0, '2012' : 0, '2013' : 0, '2014' : 0, 'Recent' : 0}
@@ -96,3 +98,26 @@ for key in crimes_per_year:
 print(most_crime_year + ' crime was the most abundant with ' + str(crimes_number) + ' occurences.')
 print(most_common_crime + ' was the most common crime over the years with ' + str(most_common_crime_number) + ' occurences.')
 print(rarest_crime + ' was the rarest crime over the years with ' + str(rarest_crime_number) + ' occurences.')
+
+temp_list = []
+labels = []
+for key in crime_statistics:
+    labels.append(key)
+    temp_list.append(0.1)
+
+
+explode = tuple(temp_list)
+
+sizes = []
+for key in crime_statistics:
+    sizes.append(crime_statistics[key])
+
+
+
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+plt.show()
